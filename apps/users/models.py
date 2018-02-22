@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models
+
+class UserManager(models.Manager):
+    def basic_validator(self, postData):
+        errors = {}
+        if len(postData['first_name']) < 2:
+            errors["first_name"] = "First name should be more than 1 character."
+        if len(postData['first_name']) < 2:
+            errors["last_name"] = "Last name should be more than 1 character."
+        if len(postData['email_address']) < 2:
+            errors["email_address"] = "Not a valid email address."
+        return errors
+
+class User(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email_address = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+    objects = UserManager()

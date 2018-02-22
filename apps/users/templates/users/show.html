@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Users Index</title>
+</head>
+<body>
+    <h1>USER {{ id }}</h1>
+    <h3>Full Name: {{ full_name }}</h3>
+    <h3>Email: {{ email_address }}</h3>
+    <h3>Created At: {{ created_at }}</h3>
+
+    <a href='{% url "my_edit" user_number=id %}'>Edit</a> |
+    <a href='{% url "my_destroy" user_number=id %}'>Delete</a>
+</body>
+</html>
