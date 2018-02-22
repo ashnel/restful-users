@@ -5,20 +5,6 @@ from time import strftime, localtime
 from django.core.urlresolvers import reverse
 from .models import *
 
-def update(request):
-    errors = User.objects.basic_validator(request.POST)
-    if len(errors):
-        for tag, error in errors.iteritems():
-            messages.error(request, error, extra_tags=tag)
-        return redirect('/user/new/'+id)    
-    else:
-        user = User.objects.get(id = id)
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.email_address = request.POST['email_address']
-        user.save()
-        return redirect('/users')
-
 def index(request):
     users = User.objects.all()
     # user_id = users.id
@@ -59,7 +45,6 @@ def show(request, user_number):
 
 def update(request, user_number):
     updated_user = User.objects.get(id=user_number)
-    print user_number
     updated_user.first_name = request.POST['first_name']
     updated_user.last_name = request.POST['last_name']
     updated_user.email_address = request.POST['email_address']
